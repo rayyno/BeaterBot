@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-client.login('NjIwMzY2MDM5NTE0ODczODc2.XXVv1A.raAKKt5Ixay3Y6KtOpaQRZJ0z4g');
+client.login('NjIwMzY2MDM5NTE0ODczODc2.XXV_nQ.Q_jWIW71MwKYDZE7-Zk-BBTY-KU');
 
 var prefix = "$"
  
