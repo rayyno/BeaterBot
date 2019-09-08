@@ -20,7 +20,6 @@ client.on("ready", () => {
     // Oh no, it errored! Let's log it to console :)
     console.error(e);
   });
-});
 
 
 client.on('message', message => {
