@@ -1,5 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+
+client.login('NjIwMzY2MDM5NTE0ODczODc2.XXVv1A.raAKKt5Ixay3Y6KtOpaQRZJ0z4g');
+
 var prefix = "$"
  
 client.on('message', message => {
@@ -330,4 +333,3 @@ client.on('message', msg => {
    }
    });
 /////
-client.login('NjIwMzY2MDM5NTE0ODczODc2.XXVv1A.raAKKt5Ixay3Y6KtOpaQRZJ0z4g');
