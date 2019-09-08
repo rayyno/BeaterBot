@@ -14,9 +14,39 @@ client.on('ready', () => {
 
 client.on('message', message => {
 
-    if (message.content === 'ping') {
+    if (message.content === 'كسمك') {
 
-       message.reply('pong');
+       message.reply('كسمك انت');
+
+       }
+
+});
+
+client.on('message', message => {
+
+    if (message.content === 'مين سالب السيرفر؟') {
+
+       message.reply('مجودي');
+
+       }
+
+});
+
+client.on('message', message => {
+
+    if (message.content === 'هل الزنا حلال؟') {
+
+       message.reply('والله على حسب');
+
+       }
+
+});
+
+client.on('message', message => {
+
+    if (message.content === 'سب الام') {
+
+       message.reply('زي السلامعليكم عندكم');
 
        }
 
