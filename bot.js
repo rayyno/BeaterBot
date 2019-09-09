@@ -10,6 +10,15 @@ client.on('ready', () => {
 
 });
 
+client.on('ready', () => {
+ 
+ console.log('Rayan Gay!');
+ 
+ client.user.setStatus('idle')
+ 
+ client.user.setGame('Made by reyy')
+});
+
 client.on("ready", () => {
   const channel = client.channels.get("399123428503715842");
   if (!channel) return console.error("The channel does not exist!");
