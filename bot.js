@@ -22,6 +22,17 @@ client.on("ready", () => {
   });
 });
 
+bot.on('ready', () => {
+    bot.user.setStatus('available')
+    bot.user.setPresence({
+        game: {
+            name: 'beating it',
+            type: "STREAMING",
+            url: "https://www.twitch.tv/reyyy"
+        }
+    });
+});
+
 client.on('message', message => {
 
     if (message.content === 'كسمك') {
