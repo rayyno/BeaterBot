@@ -14,7 +14,7 @@ client.on('ready', () => {
  
  console.log('Rayan Gay!');
  
- client.user.setStatus('idle')
+ client.user.setStatus('dnd')
  
  client.user.setGame('Made by reyy')
 });
