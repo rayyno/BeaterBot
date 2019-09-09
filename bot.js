@@ -22,6 +22,11 @@ client.on("ready", () => {
   });
 });
 
+client.user.setActivity("beating it..", {
+  type: "STREAMING",
+  url: "https://www.twitch.tv/reyyy"
+});
+
 
 client.on('message', message => {
 
