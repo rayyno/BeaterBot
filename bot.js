@@ -22,7 +22,6 @@ client.on("ready", () => {
   });
 });
 
-client.user.setStatus('online', 'Made by reyy') ;
 
 client.on('message', message => {
 
