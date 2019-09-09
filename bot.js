@@ -22,9 +22,15 @@ client.on("ready", () => {
   });
 });
 
-client.user.setActivity("beating it..", {
-  type: "STREAMING",
-  url: "https://www.twitch.tv/reyyy"
+bot.on('ready', () => {
+    bot.user.setStatus('available')
+    bot.user.setPresence({
+        game: {
+            name: 'beating it..',
+            type: "STREAMING",
+            url: "https://www.twitch.tv/reyyy"
+        }
+    });
 });
 
 
