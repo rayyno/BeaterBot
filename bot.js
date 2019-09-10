@@ -9,11 +9,10 @@ client.once('ready', () => {
 
 client.on('ready', () => {
  
- console.log('Rayan Gay!');
+ console.log('Setting Status...');
  
- client.user.setStatus('dnd')
- 
- client.user.setGame('Made by reyy')
+ client.user.setStatus('dnd');
+ client.user.setPresence({game: {name: "©𝙧𝙚𝙮𝙮", type: 0}});
 });
 
 client.on("ready", () => {
