@@ -28,6 +28,19 @@ client.on("ready", () => {
   client.user.setActivity(`${client.users.size} users`, {type: "Watching"});
 });
 
+// To let Bot join a voice channel and stay there //
+client.on("ready", () => {
+  const channel = client.channels.get("399123428503715842");
+  if (!channel) return console.error("The channel does not exist!");
+  channel.join().then(connection => {
+    // Yay, it worked!
+    console.log("Successfully connected.");
+  }).catch(e => {
+    // Oh no, it errored! Let's log it to console :)
+    console.error(e);
+  });
+});
+
 client.on("message", async message => {
   let msg = message.content.toLowerCase();
   if (message.author.bot) return undefined;
