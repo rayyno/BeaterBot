@@ -5,7 +5,7 @@ exports.run = (client, message, args) => {
   let embed = new Discord.RichEmbed()
     .setColor([113, 149, 68])
     .setAuthor("Bot Information", client.user.avatarURL)
-    .setDescription("Invitation [here](https://discordapp.com/oauth2/authorize?client_id=471801754070024212&scope=bot&permissions=0)!")
+    .setDescription("Invitation [here](https://discordapp.com/api/oauth2/authorize?client_id=620366039514873876&permissions=0&scope=bot)!")
     .addField("Guilds", ":desktop: " + client.guilds.size, true)
     .addField("Users", ":joystick: " + client.users.size, true)
     .addField("Channels", ":page_facing_up: " + client.channels.size, true)
