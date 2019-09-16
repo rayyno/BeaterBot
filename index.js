@@ -41,27 +41,27 @@ client.on("ready", () => {
   });
 });
 
-client.on("message", async message => {
-  let msg = message.content.toLowerCase();
-  if (message.author.bot) return undefined;
-  let user = message.author;
+//client.on("message", async message => {
+//  let msg = message.content.toLowerCase();
+//  if (message.author.bot) return undefined;
+//  let user = message.author;
   
-  let xp = await db.fetch(`xp_${user.id}`);
-  if (xp === null) xp = 0;
-  let level = await db.fetch(`level_${user.id}`);
-  if (level === null) level = 0;
-  let total_points = await db.fetch(`total_points_${user.id}`);
-  if (total_points === null) total_points = 0;
+//  let xp = await db.fetch(`xp_${user.id}`);
+//  if (xp === null) xp = 0;
+//  let level = await db.fetch(`level_${user.id}`);
+//  if (level === null) level = 0;
+//  let total_points = await db.fetch(`total_points_${user.id}`);
+//  if (total_points === null) total_points = 0;
   
-  if (!cooldown.is(user.id)) {
-    cooldown.add(user.id);
-    var add = Math.floor(Math.random() * 15) + 10;
-    db.add(`xp_${user.id}`, add);
-    db.add(`total_points_${user.id}`, add);
-    setTimeout(() => {
-      cooldown.remove(user.id);
-    }, 1000 * 60);
-  }
+//  if (!cooldown.is(user.id)) {
+//    cooldown.add(user.id);
+ //   var add = Math.floor(Math.random() * 15) + 10;
+//    db.add(`xp_${user.id}`, add);
+//    db.add(`total_points_${user.id}`, add);
+ //   setTimeout(() => {
+ //     cooldown.remove(user.id);
+//    }, 1000 * 60);
+//  }
   
 //  while (xp >= utils.need(level+1)) {
  //   if (xp >= utils.need(level+1)) {
