@@ -25,7 +25,7 @@ const active = new Map();
 
 client.on("ready", () => {
   console.log("Bot started!\n\nUsers: " + client.users.size + "\nServidores: " + client.guilds.size);
-  client.user.setActivity(`${client.users.size} users`, {type: "Beating"});
+  client.user.setActivity(`${client.users.size} users`, {type: "Watching"});
 });
 
 // To let Bot join a voice channel and stay there //
