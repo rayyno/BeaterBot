@@ -25,7 +25,7 @@ const active = new Map();
 
 client.on("ready", () => {
   console.log("Bot started!\n\nUsers: " + client.users.size + "\nServidores: " + client.guilds.size);
-  client.user.setActivity(`${client.users.size} users`, {type: "Watching"});
+  client.user.setActivity(`${client.users.size} users`, {type: "Beating"});
 });
 
 // To let Bot join a voice channel and stay there //
@@ -63,38 +63,38 @@ client.on("message", async message => {
     }, 1000 * 60);
   }
   
-  while (xp >= utils.need(level+1)) {
-    if (xp >= utils.need(level+1)) {
-      db.subtract(`xp_${user.id}`, utils.need(level+1));
-      db.add(`level_${user.id}`, 1);
-      xp = await db.fetch(`xp_${user.id}`);
-      level = await db.fetch(`level_${user.id}`);
-      let embed = new Discord.RichEmbed()
-        .setAuthor("LEVEL UP")
-        .setDescription("You leveled up to **Level " + level + "** in beating the meat!")
-        .setColor([54, 57, 163]);
-      message.channel.send(embed);
-    }
-  }
+//  while (xp >= utils.need(level+1)) {
+ //   if (xp >= utils.need(level+1)) {
+  //    db.subtract(`xp_${user.id}`, utils.need(level+1));
+ //     db.add(`level_${user.id}`, 1);
+ //     xp = await db.fetch(`xp_${user.id}`);
+ //     level = await db.fetch(`level_${user.id}`);
+      //let embed = new Discord.RichEmbed()
+      //  .setAuthor("LEVEL UP")
+    //    .setDescription("You leveled up to **Level " + level + "** in beating the meat!")
+     //   .setColor([54, 57, 163]);
+ //     message.channel.send(embed);
+//    }
+//  }
 
-  if (message.content.indexOf(client.prefix) !== 0) return;
-  const args = message.content.slice(client.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
+//  if (message.content.indexOf(client.prefix) !== 0) return;
+// const args = message.content.slice(client.prefix.length).trim().split(/ +/g);
+//  const command = args.shift().toLowerCase();
 
-  try {
+//  try {
     
-    let ops = {
-      active: active
-    }
+//    let ops = {
+//      active: active
+//    }
     
-    let commands = require(`./commands/${command}.js`);
-    commands.run(client, message, args, ops);
+//    let commands = require(`./commands/${command}.js`);
+//    commands.run(client, message, args, ops);
     
-  } catch (e) {
-    console.log(e);
-  } finally {}
+//  } catch (e) {
+//    console.log(e);
+//  } finally {}
 
-});
+//});
 
 
 client.on("guildCreate", async guild => {
