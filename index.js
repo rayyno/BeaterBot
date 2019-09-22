@@ -34,8 +34,6 @@ client.aliases = new Enmap();
 This is great for per-server configs, and makes things extremely easy for this purpose. */
 client.settings = new Enmap({name: "settings"});
 
-client.prefix = config.prefix;
-
 app.get("/", (request, response) => {
   console.log(Date.now() + " Ping Received");
   response.sendStatus(200);
