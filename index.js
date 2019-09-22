@@ -55,7 +55,7 @@ client.on('ready', () => {
   client.user.setStatus('available')
   client.user.setPresence({
     game: {
-      name: 'whatchu mean bro?',
+      name: 'wut',
       type: "STREAMING",
       url: "https://www.twitch.tv/reyyy"
     }
