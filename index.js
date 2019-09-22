@@ -142,7 +142,7 @@ client.on("ready", () => {
     guild.fetchInvites().then((data) => {
         data.forEach((Invite, key, map) => {
             var Inv = Invite.code;
-            dat[Inv] = Invite.uses;
+            data[Inv] = Invite.uses;
         });
     });
 });
@@ -163,11 +163,11 @@ client.on("guildMemberAdd", (member) => {
     guild.fetchInvites().then((data) => {
         data.forEach((Invite, key, map) => {
             var Inv = Invite.code;
-            if (dat[Inv])
-                if (dat[Inv] < Invite.uses) {
+            if (data[Inv])
+                if (data[Inv] < Invite.uses) {
  channel.send(`تم دعوته بواسطة  ${Invite.inviter} `) ;         
  }
-            dat[Inv] = Invite.uses;
+            data[Inv] = Invite.uses;
        
        });
     });
