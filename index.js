@@ -138,7 +138,7 @@ client.on('message', async message => {
 client.on("ready", () => {
     var guild;
     while (!guild)
-        guild = client.guilds.get("اي دي سيرفرك - Server id");
+        guild = client.guilds.get("255962010368475137");
     guild.fetchInvites().then((data) => {
         data.forEach((Invite, key, map) => {
             var Inv = Invite.code;
@@ -148,7 +148,7 @@ client.on("ready", () => {
 });
 
 client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.get("اي دي الروم - Room id");
+    let channel = member.guild.channels.get("255962010368475137");
     if (!channel) {
         console.log("!the channel id it's not correct");
         return;
@@ -159,7 +159,7 @@ client.on("guildMemberAdd", (member) => {
     console.log('-');
     var guild;
     while (!guild)
-        guild = client.guilds.get("اي دي سيرفرك - Server id");
+        guild = client.guilds.get("255962010368475137");
     guild.fetchInvites().then((data) => {
         data.forEach((Invite, key, map) => {
             var Inv = Invite.code;
