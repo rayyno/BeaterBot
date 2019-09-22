@@ -19,7 +19,7 @@ const Enmap = require("enmap");
 
 // Here we load the config file that contains our token and our prefix values.
 client.config = require("./config.js");
-client.prefix = config.prefix;
+
 // Require our logger
 client.logger = require("./modules/Logger");
 
@@ -161,6 +161,7 @@ client.on('message', message => {
 }); 
 
 // Broadcast Command
+const prefix = "*";
 client.on("message", message => {
 	if (message.content.startsWith(prefix + "bc")) {
 		if (!message.member.hasPermission("ADMINISTRATOR"))  return;
