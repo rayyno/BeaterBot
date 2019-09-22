@@ -32,7 +32,7 @@ client.aliases = new Enmap();
 
 /* Now we integrate the use of Evie's awesome EnMap module, which essentially saves a collection to disk.
 This is great for per-server configs, and makes things extremely easy for this purpose. */
-//client.settings = new Enmap({name: "settings"});
+client.settings = new Enmap({name: "settings"});
 
 app.get("/", (request, response) => {
   console.log(Date.now() + " Ping Received");
