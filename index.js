@@ -48,17 +48,17 @@ setInterval(() => {
 	client.user.setActivity(`${client.users.size} users`, {type: "Watching"});
 });*/
 
-/*client.on('ready', () => {
+client.on('ready', () => {
   console.log("Bot started!\n\nUsers: " + client.users.size + "\nServers: " + client.guilds.size);
   client.user.setStatus('available')
   client.user.setPresence({
     game: {
-      name: 'wut',
+      name: 'BEATMEATERS MAIN BOT',
       type: "STREAMING",
       url: "https://www.twitch.tv/reyyy"
     }
   });
-});*/
+});
 
 // To let Bot join a voice channel and stay there //
 client.on("ready", () => {
