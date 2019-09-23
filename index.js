@@ -248,6 +248,21 @@ const init = async () => {
   }
 
 };
+
+// Fun Commands
+client.on('message', message => {
+    if (message.content === 'كسمك') {
+       message.reply('كسمك انت');
+       }
+});
+
+
+client.on('message', message => {
+    if (message.content === 'مين سالب السيرفر') {
+       message.reply('مجودي');
+       }
+});
+
 client.login(process.env.TOKEN);
 
 init();
