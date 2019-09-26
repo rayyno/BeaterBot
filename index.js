@@ -134,7 +134,7 @@ client.on('message', async message => {
   }
 });
 
-// For Invited by whom
+/* For Invited by whom
 client.on("ready", () => {
     var guild;
     while (!guild)
@@ -171,7 +171,7 @@ client.on("guildMemberAdd", (member) => {
        
        });
     });
-});
+});*/
 
 // For Sending Invite link to users
 client.on('message', message => {
