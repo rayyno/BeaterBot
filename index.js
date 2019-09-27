@@ -300,7 +300,7 @@ client.on('guildMemberAdd', member => {
   });
 });*/
 
-client.on("guildMemberAdd", member => {
+/*client.on("guildMemberAdd", member => {
   let welcomer = member.guild.channels.find("name","log");
         if(!welcomer) return;
         if(welcomer) {
@@ -341,7 +341,7 @@ client.on('guildMemberAdd', member => {
     const welcome = member.guild.channels.find(channel => channel.name === "log");
     welcome.send(` ||${member.user.tag}|| invited by ||${inviter.tag}|| invites =  ||${invite.uses}|| `)
   });
-});
+});*/
 
 client.login(process.env.TOKEN);
 
