@@ -11,7 +11,7 @@ exports.run = (client, message, args, level) => {
     .setImage(mentionedUser.displayAvatarURL)
     .setColor("00ff00")
     .setTitle("Avatar")
-    .setFooter("Searched by " + message.author.tag)
+    .setFooter("Requested by " + message.author.tag)
     .setDescription("[Avatar URL link]("+mentionedUser.displayAvatarURL+")");
 
   message.channel.send(embed)
