@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 
 exports.run = (client, message, args, level) => {
-    let msg = await message.channel.send("Generating avatar...");
+    
 
     let mentionedUser = message.mentions.users.first() || message.author;
 
