@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 
-exports.run = (client, message, args) => {
+exports.run = (client, message, args, level) => {
 
-  let embed = new Discord.RichEmbed()
+  const embed = new Discord.RichEmbed()
     .setColor([113, 149, 68])
     .setAuthor("Bot Information", client.user.avatarURL)
     .setDescription("Invitation [here](https://discordapp.com/api/oauth2/authorize?client_id=620366039514873876&permissions=0&scope=bot)!")
@@ -18,3 +18,17 @@ exports.run = (client, message, args) => {
   message.channel.send(embed);
 
 }
+
+exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: [],
+  permLevel: "User"
+};
+
+exports.help = {
+  name: "bot",
+  category: "Miscelaneous",
+  description: "Shows Bot Information/يعرض معلومات البوت",
+  usage: "bot"
+};
