@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
+
+exports.run = async (bot, message, args) => {
     let msg = await message.channel.send("Generating avatar...");
 
     let mentionedUser = message.mentions.users.first() || message.author;
@@ -19,6 +20,16 @@ module.exports.run = async (bot, message, args) => {
     msg.delete();
 }
 
-module.exports.help = {
-    name: "avatar"
-}
+exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: [av],
+  permLevel: "User"
+};
+
+exports.help = {
+  name: "avatar",
+  category: "Miscelaneous",
+  description: "Send mentioned user avatar/ يرسل صورة العرض",
+  usage: "avatar
+};
