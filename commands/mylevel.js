@@ -13,6 +13,6 @@ exports.conf = {
 exports.help = {
   name: "mylevel",
   category: "Miscelaneous",
-  description: "Tells you your permission level for the current message location.",
+  description: "Tells you your permission level for the current message location./ يقولك كم لفل الصلاحية تبعك",
   usage: "mylevel"
 };
