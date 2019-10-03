@@ -92,6 +92,6 @@ exports.conf = {
 exports.help = {
   name: "conf",
   category: "System",
-  description: "Modify the default configuration for all guilds.",
+  description: "Modify the default configuration for all guilds/لتعديل البوت في كل السيرفرات المتصل فيها",
   usage: "conf <view/get/edit> <key> <value>"
 };
