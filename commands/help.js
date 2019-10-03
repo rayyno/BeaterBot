@@ -30,7 +30,7 @@ exports.run = (client, message, args, level) => {
     });
     message.channel.send(output, {code: "asciidoc", split: { char: "\u200b" }})
       .then(msg => {
-        msg.delete(10000)
+        msg.delete(20000)
       });
   } else {
     // Show individual command's help.
