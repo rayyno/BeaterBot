@@ -16,7 +16,7 @@ const config = {
   // VIA COMMANDS IN THE GUILD.
   
   "defaultSettings" : {
-    "prefix": "*",
+    "prefix": "!",
     "modLogChannel": "log",
     "modRole": "Moderator",
     "adminRole": "Administrator",
