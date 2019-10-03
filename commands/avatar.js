@@ -16,8 +16,6 @@ exports.run = (client, message, args, level) => {
 
   message.channel.send(embed)
 
-
-  msg.delete();
 }
 
 exports.conf = {
