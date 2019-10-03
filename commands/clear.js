@@ -30,7 +30,7 @@ exports.conf = {
 
 exports.help = {
   name: "clear",
-  category: "Miscelaneous",
+  category: "System",
   description: "Clears number of msgs from the chat/ يمسح عدد من الرسائل في الشات",
   usage: "clear"
 };
