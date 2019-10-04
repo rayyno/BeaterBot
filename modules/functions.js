@@ -39,7 +39,7 @@ module.exports = (client) => {
   // So if you do that, you're resetting your defaults. Congrats.
   const defaultSettings = {
     "prefix": "!",
-    "modLogChannel": "mod-log",
+    "modLogChannel": "log",
     "modRole": "Moderator",
     "adminRole": "Administrator",
     "systemNotice": "true",
