@@ -386,15 +386,17 @@ client.on("message", message => {
             else roleEmbed.addField(customEmote, role, true);
         }
 
+      if (message.content.startsWith(prefix + "rolees")) {
         message.channel.send(roleEmbed).then(async m => {
-            for (const r of RCONFIG.reactions) {
-                const emoji = r;
-                const customCheck = client.emojis.find(e => e.name === emoji);
-                
-                if (!customCheck) await m.react(emoji);
-                else await m.react(customCheck.id);
-            }
+          for (const r of RCONFIG.reactions) {
+            const emoji = r;
+            const customCheck = client.emojis.find(e => e.name === emoji);
+            if (!customCheck) await m.react(emoji);
+            else await m.react(customCheck.id);
+          }
         });
+      }
+
     }
 });
 
