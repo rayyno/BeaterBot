@@ -9,7 +9,7 @@ const app = express();
 const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 const Discord = require('discord.js');
-const config = require("./config.js");
+const config = require("./config.json");
 const botSettings = require("./botsettings.json")
 const db = require('quick.db');
 const cooldown = require("./cooldown.js");
@@ -22,7 +22,7 @@ const prefix = botSettings.prefix;
 const { Client, RichEmbed, Emoji, MessageReaction } = require('discord.js');
 
 // Here we load the config file that contains our token and our prefix values.
-client.config = require("./config.js");
+client.config = require("./config.json");
 
 // Require our logger
 client.logger = require("./modules/Logger");
