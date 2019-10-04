@@ -263,6 +263,25 @@ client.on('message', message => {
        }
 });
 
+client.on('message', message => {
+    if (message.content === 'مين كتبلك') {
+       message.reply('صحبتي😳💓');
+       }
+});
+
+client.on('message', message => {
+    if (message.content === 'طيب مين كتبلك') {
+       message.reply('صحبتي😳💓');
+       }
+});
+
+
+client.on('message', message => {
+    if (message.content === 'مين عم السيرفر') {
+       message.reply('العم تشاوس');
+       }
+});
+
 /* Invite Tracking
 // Initialize the invite cache
 const invites = {};
