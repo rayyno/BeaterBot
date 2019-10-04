@@ -3,9 +3,9 @@ module.exports = {
 	/**
 	 * Instructions on how to get this: https://redd.it/40zgse
 	 */
-	yourID: "",
+	yourID: "226537462590210048",
 
-	setupCMD: "!createrolemessage",
+	setupCMD: "idkwtfthisis",
 
 	/**
 	 * Delete the 'setupCMD' command after it is ran. Set to 'true' for the command message to be deleted
@@ -25,12 +25,12 @@ module.exports = {
 	 */
 	embedFooter: "Role Reactions",
 	
-	roles: ["Hacker", "Artist", "Public Relations", "Intern"],
+	roles: ["Male", "Female", "eboy", "egirl"],
 
 	/**
 	 * For custom emojis, provide the name of the emoji
 	 */
-	reactions: ["💻", "🖌", "😃", "🆕"],
+	reactions: ["♂️", "♀️", "🤤", "😋"],
 
 	/**
 	 * Set to "true" if you want all roles to be in a single embed
@@ -43,7 +43,7 @@ module.exports = {
 	 * 
 	 * #dd9323
 	 */
-	embedColor: "#dd9323",
+	embedColor: "#ff1f1f",
 
 	/**
 	 * Set to "true" if you want to set a thumbnail in the embed
