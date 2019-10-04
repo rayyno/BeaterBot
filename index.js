@@ -17,6 +17,7 @@ const client = new Discord.Client();
 const active = new Map();
 const Enmap = require("enmap");
 const RCONFIG = require('./config_role');
+const prefix = botSettings.prefix;
 const { Client, RichEmbed, Emoji, MessageReaction } = require('discord.js');
 
 // Here we load the config file that contains our token and our prefix values.
