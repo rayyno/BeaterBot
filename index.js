@@ -22,7 +22,7 @@ const RCONFIG = require('./config_role');
 const { Client, RichEmbed, Emoji, MessageReaction } = require('discord.js');
 
 // Here we load the config file that contains our token and our prefix values.
-client.config = require("./config.json");
+client.config = require("./config.js");
 
 // Require our logger
 client.logger = require("./modules/Logger");
