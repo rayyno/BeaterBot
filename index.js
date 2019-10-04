@@ -9,8 +9,8 @@ const app = express();
 const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 const Discord = require('discord.js');
-const config = require("./config.json");
-const botSettings = require("./botsettings.json")
+const config = require("./config.js");
+//const botSettings = require("./botsettings.json")
 const db = require('quick.db');
 const cooldown = require("./cooldown.js");
 const utils = require("./utils.js");
@@ -18,7 +18,7 @@ const client = new Discord.Client();
 const active = new Map();
 const Enmap = require("enmap");
 const RCONFIG = require('./config_role');
-const prefix = config.prefix;
+//const prefix = config.prefix;
 const { Client, RichEmbed, Emoji, MessageReaction } = require('discord.js');
 
 // Here we load the config file that contains our token and our prefix values.
