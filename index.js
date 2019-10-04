@@ -10,6 +10,7 @@ const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 const Discord = require('discord.js');
 const config = require("./config.js");
+const botSettings = require("./botsettings.json")
 const db = require('quick.db');
 const cooldown = require("./cooldown.js");
 const utils = require("./utils.js");
