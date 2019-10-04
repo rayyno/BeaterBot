@@ -1,33 +1,32 @@
 // Import constructors, configuration and login the client
 const { Client, RichEmbed, Emoji, MessageReaction } = require('discord.js');
-const CONFIG = require('./config');
+const RCONFIG = require('./config_role');
 
 const client = new Client({ disableEveryone: true });
-if (CONFIG.botToken === '')
+if (RCONFIG.botToken === '')
     throw new Error("The 'botToken' property is not set in the config.js file. Please do this!");
 
-client.login(CONFIG.botToken);
 
 // If there isn't a reaction for every role, alert the user
-if (CONFIG.roles.length !== CONFIG.reactions.length)
+if (RCONFIG.roles.length !== RCONFIG.reactions.length)
     throw "Roles list and reactions list are not the same length! Please double check this in the config.js file";
 
 // Function to generate the role messages, based on your settings
 function generateMessages() {
-    return CONFIG.roles.map((r, e) => {
+    return RCONFIG.roles.map((r, e) => {
         return {
             role: r,
             message: `React below to get the **"${r}"** role!`, //DONT CHANGE THIS,
-            emoji: CONFIG.reactions[e]
+            emoji: RCONFIG.reactions[e]
         };
     });
 }
 
 // Function to generate the embed fields, based on your settings and if you set "const embed = true;"
 function generateEmbedFields() {
-    return CONFIG.roles.map((r, e) => {
+    return RCONFIG.roles.map((r, e) => {
         return {
-            emoji: CONFIG.reactions[e],
+            emoji: RCONFIG.reactions[e],
             role: r
         };
     });
@@ -48,9 +47,9 @@ client.on("message", message => {
     // We don't want the bot to do anything further if it can't send messages in the channel
     if (message.guild && !message.channel.permissionsFor(message.guild.me).missing('SEND_MESSAGES')) return;
 
-    if ((message.author.id !== CONFIG.yourID) && (message.content.toLowerCase() !== CONFIG.setupCMD)) return;
+    if ((message.author.id !== RCONFIG.yourID) && (message.content.toLowerCase() !== CONFIG.setupCMD)) return;
 
-    if (CONFIG.deleteSetupCMD) {
+    if (RCONFIG.deleteSetupCMD) {
         const missing = message.channel.permissionsFor(message.guild.me).missing('MANAGE_MESSAGES');
         // Here we check if the bot can actually delete messages in the channel the command is being ran in
         if (missing.includes('MANAGE_MESSAGES'))
@@ -63,11 +62,11 @@ client.on("message", message => {
     if (missing.includes('ADD_REACTIONS'))
         throw new Error("I need permission to add reactions to these messages! Please assign the 'Add Reactions' permission to me in this channel!");
 
-    if (!CONFIG.embed) {
-        if (!CONFIG.initialMessage || (CONFIG.initialMessage === '')) 
+    if (!RCONFIG.embed) {
+        if (!RCONFIG.initialMessage || (RCONFIG.initialMessage === '')) 
             throw "The 'initialMessage' property is not set in the config.js file. Please do this!";
 
-        message.channel.send(CONFIG.initialMessage);
+        message.channel.send(RCONFIG.initialMessage);
 
         const messages = generateMessages();
         for (const { role, message: msg, emoji } of messages) {
@@ -81,20 +80,20 @@ client.on("message", message => {
             }).catch(console.error);
         }
     } else {
-        if (!CONFIG.embedMessage || (CONFIG.embedMessage === ''))
+        if (!RCONFIG.embedMessage || (RCONFIG.embedMessage === ''))
             throw "The 'embedMessage' property is not set in the config.js file. Please do this!";
-        if (!CONFIG.embedFooter || (CONFIG.embedMessage === ''))
+        if (!RCONFIG.embedFooter || (RCONFIG.embedMessage === ''))
             throw "The 'embedFooter' property is not set in the config.js file. Please do this!";
 
         const roleEmbed = new RichEmbed()
-            .setDescription(CONFIG.embedMessage)
-            .setFooter(CONFIG.embedFooter);
+            .setDescription(RCONFIG.embedMessage)
+            .setFooter(RCONFIG.embedFooter);
 
-        if (CONFIG.embedColor) roleEmbed.setColor(CONFIG.embedColor);
+        if (RCONFIG.embedColor) roleEmbed.setColor(RCONFIG.embedColor);
 
-        if (CONFIG.embedThumbnail && (CONFIG.embedThumbnailLink !== '')) 
-            roleEmbed.setThumbnail(CONFIG.embedThumbnailLink);
-        else if (CONFIG.embedThumbnail && message.guild.icon)
+        if (RCONFIG.embedThumbnail && (RCONFIG.embedThumbnailLink !== '')) 
+            roleEmbed.setThumbnail(RCONFIG.embedThumbnailLink);
+        else if (RCONFIG.embedThumbnail && message.guild.icon)
             roleEmbed.setThumbnail(message.guild.iconURL);
 
         const fields = generateEmbedFields();
@@ -111,7 +110,7 @@ client.on("message", message => {
         }
 
         message.channel.send(roleEmbed).then(async m => {
-            for (const r of CONFIG.reactions) {
+            for (const r of RCONFIG.reactions) {
                 const emoji = r;
                 const customCheck = client.emojis.find(e => e.name === emoji);
                 
@@ -152,11 +151,11 @@ client.on('raw', async event => {
     if (message.embeds[0]) embedFooterText = message.embeds[0].footer.text;
 
     if (
-        (message.author.id === client.user.id) && (message.content !== CONFIG.initialMessage || 
-        (message.embeds[0] && (embedFooterText !== CONFIG.embedFooter)))
+        (message.author.id === client.user.id) && (message.content !== RCONFIG.initialMessage || 
+        (message.embeds[0] && (embedFooterText !== RCONFIG.embedFooter)))
     ) {
 
-        if (!CONFIG.embed && (message.embeds.length < 1)) {
+        if (!RCONFIG.embed && (message.embeds.length < 1)) {
             const re = `\\*\\*"(.+)?(?="\\*\\*)`;
             const role = message.content.match(re)[1];
 
@@ -165,7 +164,7 @@ client.on('raw', async event => {
                 if (event.t === "MESSAGE_REACTION_ADD") member.addRole(guildRole.id);
                 else if (event.t === "MESSAGE_REACTION_REMOVE") member.removeRole(guildRole.id);
             }
-        } else if (CONFIG.embed && (message.embeds.length >= 1)) {
+        } else if (RCONFIG.embed && (message.embeds.length >= 1)) {
             const fields = message.embeds[0].fields;
 
             for (const { name, value } of fields) {
@@ -185,3 +184,5 @@ process.on('unhandledRejection', err => {
     const msg = err.stack.replace(new RegExp(`${__dirname}/`, 'g'), './');
 	console.error("Unhandled Rejection", msg);
 });
+
+client.login(process.env.TOKEN);
