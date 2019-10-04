@@ -284,6 +284,7 @@ client.on('message', message => {
        }
 });
 
+
 // If there isn't a reaction for every role, alert the user
 if (RCONFIG.roles.length !== RCONFIG.reactions.length)
     throw "Roles list and reactions list are not the same length! Please double check this in the config.js file";
@@ -315,7 +316,9 @@ client.on('error', console.error);
 
 // Handles the creation of the role reactions. Will either send the role messages separately or in an embed
 client.on("message", message => {
-    // Make sure bots can't run this command
+  
+  if (message.content === 'test'){
+        // Make sure bots can't run this command
     if (message.author.bot) return;
 
     // Make sure the command can only be ran in a server
@@ -386,7 +389,6 @@ client.on("message", message => {
             else roleEmbed.addField(customEmote, role, true);
         }
 
-      if (message.content.startsWith(prefix + "rolees")) {
         message.channel.send(roleEmbed).then(async m => {
           for (const r of RCONFIG.reactions) {
             const emoji = r;
@@ -395,9 +397,10 @@ client.on("message", message => {
             else await m.react(customCheck.id);
           }
         });
-      }
 
     }
+  };
+
 });
 
 // This makes the events used a bit more readable
@@ -463,6 +466,7 @@ process.on('unhandledRejection', err => {
     const msg = err.stack.replace(new RegExp(`${__dirname}/`, 'g'), './');
 	console.error("Unhandled Rejection", msg);
 });
+
 
 
 /* Invite Tracking
