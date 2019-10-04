@@ -10,7 +10,6 @@ const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 const Discord = require('discord.js');
 const config = require("./config.js");
-//const botSettings = require("./botsettings.json")
 const db = require('quick.db');
 const cooldown = require("./cooldown.js");
 const utils = require("./utils.js");
@@ -18,7 +17,7 @@ const client = new Discord.Client();
 const active = new Map();
 const Enmap = require("enmap");
 const RCONFIG = require('./config_role');
-//const prefix = config.prefix;
+const prefix = '!';
 const { Client, RichEmbed, Emoji, MessageReaction } = require('discord.js');
 
 // Here we load the config file that contains our token and our prefix values.
@@ -202,6 +201,35 @@ client.on('message', message => {
       message.author.sendEmbed(Embed11)
     }
 }); 
+
+// Invite Tracker
+client.on('message',message =>{
+
+    if(message.content.startsWith(prefix + 'topinv')) {
+  message.guild.fetchInvites().then(i =>{
+  var invites = [];
+   
+  i.forEach(inv =>{
+    var [invs,i]=[{},null];
+     
+    if(inv.maxUses){
+        invs[inv.code] =+ inv.uses+"/"+inv.maxUses;
+    }else{
+        invs[inv.code] =+ inv.uses;
+    }
+        invites.push(`invite: ${inv.url} inviter: ${inv.inviter} \`${invs[inv.code]}\`;`);
+   
+  });
+  var embed = new Discord.RichEmbed()
+  .setColor("#000000")
+  .setDescription(`${invites.join(`\n`)+'\n\n**By:** '+message.author}`)
+  .setThumbnail(client.user.avatarURL)
+           message.channel.send({ embed: embed });
+   
+  });
+   
+    }
+  });
 
 // Broadcast Command
 client.on("message", message => {
