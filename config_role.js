@@ -25,12 +25,12 @@ module.exports = {
 	 */
 	embedFooter: "Role Reactions",
 	
-	roles: ["Male", "Female", "eboy", "egirl"],
+	roles: ["Male", "Female", "eboy", "egirl", "Clown"],
 
 	/**
 	 * For custom emojis, provide the name of the emoji
 	 */
-	reactions: ["👨", "👩", "🤤", "😋"],
+	reactions: ["👨", "👩", "🤤", "😋", "🤡"],
 
 	/**
 	 * Set to "true" if you want all roles to be in a single embed
