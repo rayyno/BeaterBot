@@ -1,8 +1,9 @@
 // Import constructors, configuration and login the client
 const { Client, RichEmbed, Emoji, MessageReaction } = require('discord.js');
 const RCONFIG = require('./config_role');
-
 const client = new Client({ disableEveryone: true });
+
+exports.run = (client, message, args, level) => {
 if (RCONFIG.botToken === '')
     throw new Error("The 'botToken' property is not set in the config.js file. Please do this!");
 
@@ -184,5 +185,18 @@ process.on('unhandledRejection', err => {
     const msg = err.stack.replace(new RegExp(`${__dirname}/`, 'g'), './');
 	console.error("Unhandled Rejection", msg);
 });
+}
 
-client.login(process.env.TOKEN);
+exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: [],
+  permLevel: "Bot Admin"
+};
+
+exports.help = {
+  name: "roles",
+  category: "System",
+  description: "Displays Available Auto-Roles/لعرض الرولات المتاحة",
+  usage: "roles"
+};
