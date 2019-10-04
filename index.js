@@ -203,7 +203,6 @@ client.on('message', message => {
 }); 
 
 // Broadcast Command
-const prefix = "!";
 client.on("message", message => {
 	if (message.content.startsWith(prefix + "bc")) {
 		if (!message.member.hasPermission("ADMINISTRATOR"))  return;
