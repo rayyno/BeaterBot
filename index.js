@@ -346,7 +346,7 @@ client.on('error', console.error);
 // Handles the creation of the role reactions. Will either send the role messages separately or in an embed
 client.on("message", message => {
   
-  if (message.content === '*roles'){
+  if (message.content === '!roles'){
         // Make sure bots can't run this command
     if (message.author.bot) return;
 
