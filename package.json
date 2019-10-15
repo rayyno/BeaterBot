@@ -49,6 +49,8 @@
     "prism-media": "^1.1.0",
     "safe-buffer": "^5.2.0",
     "tweetnacl": "^1.0.1",
+    "common-tags": "^1.8.0",
+    "discord.js-commando": "^0.10.0",
     "ws": "^7.1.2"
   }
 }
