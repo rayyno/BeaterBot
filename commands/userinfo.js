@@ -1,3 +1,6 @@
+const stripIndents = require('common-tags').stripIndents;
+const commando = require('discord.js-commando');
+
 exports.run = (client, message, args, level) => {
 
 	async run(msg, args) {
