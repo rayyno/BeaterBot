@@ -1,33 +1,47 @@
+const Discord = require("discord.js");
+
 const { Command } = require('klasa');
 const fetch = require('node-fetch');
 
-module.exports = class extends Command {
-  constructor(...args) {
-    super(...args, {
-      runIn: ['text', 'group'],
-      requiredPermissions: ['EMBED_LINKS'],
-      cooldown: 5,
-      description: (lang) => lang.get('SLAP_DESCRIPTION'),
-      usage: '<member:member>',
-    });
+
+/*module.exports = class Slap extends Command {
+    constructor(){
+        super({
+            name: "slap",
+            category: Category.type.FUN
+        })
+    }
+*/
+exports.run = async (client, message, args, level) => {
+  // async execute(meiko, content, context){
+  const WeebAPI = require("../../util/weebapi.js")
+  const slap = await WeebAPI("slap")
+  let slapMessage;
+  let isLonely = false
+
+  if (slap === undefined) {
+    context.channel.send(":cry: I couldn't contact the API...")
+    return;
   }
 
-  async run(msg, [member]) {
-    try {
-      const author = msg.author;
-      const user = member.user;
-      const data = await (await fetch('https://nekos.life/api/v2/img/slap')).json();
-      if (!(data || data.url)) return msg.sendError('NO_DATA');
-      msg.genEmbed()
-          .setEmoteTitle(author.username, user.username, 'SLAPPING', true)
-          .setProvidedBy('nekos.life')
-          .setImage(data.url)
-          .send();
-    } catch (error) {
-      return msg.sendError('REQUEST_FAILED');
+  if (context.mentions.users.size == 0) {
+    await context.channel.send(":x: Who am I going to slap if you don't give me a mention? *hmph*")
+    return
+  } else {
+    if (context.mentions.users.has(context.author)) {
+      isLonely = true    
+    } else {
+      slapMessage = context.mentions.users.map(u => u.username).join(" ,")
     }
   }
-};
+
+  const patEmbed = new meiko.Discord.RichEmbed()
+    .setDescription(isLonely ? "U-Uh... idk why you want this, but.. *slaps you*" : `**${context.author.username}** just slapped **${slapMessage}**!`)
+    .setImage(slap)
+  await context.channel.send({embed:patEmbed})    
+}
+
+//}
 
 exports.conf = {
   enabled: true,
