@@ -58,7 +58,7 @@ client.on('ready', () => {
     game: {
       name: 'BEATMEATERS MAIN BOT',
       type: "STREAMING",
-      url: "https://www.twitch.tv/reyynan"
+      url: "https://www.twitch.tv/reyyun"
     }
   });
 });
