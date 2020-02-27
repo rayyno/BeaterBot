@@ -508,9 +508,9 @@ tmpconfig = cfg.read()
 cfg.close()
 config = json.loads(tmpconfig)
 
-//token = config["token"]
-//guild_id = config["server-id"]
-//logs_channel = config["logs-channel-id"]
+token = config["token"]
+guild_id = config["server-id"]
+logs_channel = config["logs-channel-id"]
 
 
 invites = {}
