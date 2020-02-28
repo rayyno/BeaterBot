@@ -496,7 +496,7 @@ process.on('unhandledRejection', err => {
 	console.error("Unhandled Rejection", msg);
 });
 
-// SEND DM
+///////////////////// SEND DM ////////////////////////////////////////////////////////
 
 client.on("message", msg => {
   let msgarray = msg.content.split(" ");
@@ -541,10 +541,10 @@ od.delete(2222)
 reaction1.on("collect", r => {
 let embd = new Discord.RichEmbed()
 .setTitle("**DM**")
-.setDescription(`** الرسالة نوع وش؟ :arrow_down:
-🚩 | امبد
+.setDescription(`** الرسالة نوع ايش ؟ :arrow_down:
+🚩 | Embed
 
-✨ | بدون امبد
+✨ | No Embed
 **`)
 msg.delete()
 od.delete(2222)
@@ -676,7 +676,7 @@ var embed = new Discord.RichEmbed()
     .setColor("#0984e3") 
     .setImage("https://cdn.discordapp.com/attachments/607046676984758383/650554313818767361/p_1225y7yza1.gif"); 
     
-  var channel = member.guild.channels.find("name", "اسم الرومl");         
+  var channel = member.guild.channels.find("name", "𝑩𝑬𝑨𝑻𝑴𝑬𝑨𝑻𝑬𝑹𝑺");         
   if (!channel) return; 
   channel.send({ embed: embed }); 
 }); 
@@ -706,7 +706,7 @@ client.on("guildMemberAdd", member => {
     const inviter = client.users.get(invite.inviter.id); 
     const welcome = member.guild.channels.find(
     
-      channel => channel.name === "اسم الروم"      
+      channel => channel.name === "𝑩𝑬𝑨𝑻𝑴𝑬𝑨𝑻𝑬𝑹𝑺"      
     ); 
     welcome.send(
 `{<@${member.id}>} **invited by** {<@${inviter.id}>}`
