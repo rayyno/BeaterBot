@@ -668,6 +668,54 @@ client.on('guildMemberAdd', member => {
   });
 });*/
 
+///////////////////////IVNITED BY///////////////////////////////////////////////////////////
+client.on("guildMemberAdd", member => { 
+var embed = new Discord.RichEmbed()
+    .setThumbnail(member.user.avatarURL) 
+    .addField("**Thank You For Joining**", `<@${member.id}>`)
+    .setColor("#0984e3") 
+    .setImage("https://cdn.discordapp.com/attachments/607046676984758383/650554313818767361/p_1225y7yza1.gif"); 
+    
+  var channel = member.guild.channels.find("name", "اسم الرومl");         
+  if (!channel) return; 
+  channel.send({ embed: embed }); 
+}); 
+
+const invites = {}; 
+const wait = require("util").promisify(setTimeout); 
+client.on("ready", () => {
+
+  wait(1000); 
+  client.guilds.forEach(king => {
+ 
+    king.fetchInvites().then(guildInvites => {
+
+      invites[king.id] = guildInvites; 
+  
+    }); 
+  }); 
+}); 
+
+client.on("guildMemberAdd", member => {
+ //! ,Haru#6204  , ${! .₳Ⱨ₥ɆĐ ♡}#0561
+  member.guild.fetchInvites().then(guildInvites => {
+ 
+    const gamer = invites[member.guild.id]; 
+    invites[member.guild.id] = guildInvites; 
+   const invite = guildInvites.find(i => gamer.get(i.code).uses < i.uses);
+    const inviter = client.users.get(invite.inviter.id); 
+    const welcome = member.guild.channels.find(
+    
+      channel => channel.name === "اسم الروم"      
+    ); 
+    welcome.send(
+`{<@${member.id}>} **invited by** {<@${inviter.id}>}`
+    ); 
+  }); 
+}); 
+
+/////////////////////////////////////////////////////////////////////////////////////
+
 client.login(process.env.TOKEN);
 
 init();
