@@ -671,10 +671,10 @@ client.on('guildMemberAdd', member => {
 ///////////////////////IVNITED BY///////////////////////////////////////////////////////////
 client.on("guildMemberAdd", member => { 
 var embed = new Discord.RichEmbed()
-    .setThumbnail(member.user.avatarURL) 
-    .addField("**Thank You For Joining**", `<@${member.id}>`)
-    .setColor("#0984e3") 
-    .setImage("https://cdn.discordapp.com/attachments/607046676984758383/650554313818767361/p_1225y7yza1.gif"); 
+    //.setThumbnail(member.user.avatarURL) 
+   // .addField("**Thank You For Joining**", `<@${member.id}>`)
+  //  .setColor("#0984e3") 
+   // .setImage("https://cdn.discordapp.com/attachments/607046676984758383/650554313818767361/p_1225y7yza1.gif"); 
     
   var channel = member.guild.channels.find("name", "𝑩𝑬𝑨𝑻𝑴𝑬𝑨𝑻𝑬𝑹𝑺");         
   if (!channel) return; 
