@@ -697,7 +697,6 @@ client.on("ready", () => {
 }); 
 
 client.on("guildMemberAdd", member => {
- //! ,Haru#6204  , ${! .₳Ⱨ₥ɆĐ ♡}#0561
   member.guild.fetchInvites().then(guildInvites => {
  
     const gamer = invites[member.guild.id]; 
