@@ -669,8 +669,8 @@ client.on('guildMemberAdd', member => {
 });*/
 
 ///////////////////////IVNITED BY///////////////////////////////////////////////////////////
-client.on("guildMemberAdd", member => { 
-/*var embed = new Discord.RichEmbed()
+/*client.on("guildMemberAdd", member => { 
+var embed = new Discord.RichEmbed()
     .setThumbnail(member.user.avatarURL) 
     .addField("**Thank You For Joining**", `<@${member.id}>`)
     .setColor("#0984e3") 
