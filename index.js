@@ -61,9 +61,18 @@ client.on('ready', () => {
       url: "https://www.twitch.tv/reyyun"
     }
   });
+	const channel = client.channels.get("695000053068333166");
+	if (!channel) return console.error("The channel does not exist!");
+	channel.join().then(connection => {
+		// Yay, it worked!
+		console.log("Successfully connected.");
+	}).catch(e => {
+		// Oh no, it errored! Let's log it to console :)
+		console.error(e);
+	});
 });
 
-// To let Bot join a voice channel and stay there //
+/* To let Bot join a voice channel and stay there //
 client.on("ready", () => {
   const channel = client.channels.get("695000053068333166");
   if (!channel) return console.error("The channel does not exist!");
@@ -74,7 +83,7 @@ client.on("ready", () => {
     // Oh no, it errored! Let's log it to console :)
     console.error(e);
   });
-});
+}); */
 
 
 client.on("guildCreate", async guild => {
