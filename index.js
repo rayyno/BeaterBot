@@ -753,7 +753,7 @@ client.on("ready", function(){
     console.log("Bot online!");
 })
 
-// Message event listener
+/* Message event listener
 client.on("message", async function(msg){
 
     // Ignore the message if it wasn't in a server text channel,
@@ -766,7 +766,7 @@ client.on("message", async function(msg){
     const args = msg.content.slice(cfg.prefix.length).trim().split(/ +/g);
     // Removes the first word of the arguments and puts it into a separate string
     const cmd = args.shift().toLowerCase();
-
+*/
     /* HELP COMMAND
     if(cmd === "help")
     {
