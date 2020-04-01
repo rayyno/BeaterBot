@@ -65,7 +65,7 @@ client.on('ready', () => {
 
 // To let Bot join a voice channel and stay there //
 client.on("ready", () => {
-  const channel = client.channels.get("399123428503715842");
+  const channel = client.channels.get("695000053068333166");
   if (!channel) return console.error("The channel does not exist!");
   channel.join().then(connection => {
     // Yay, it worked!
