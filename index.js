@@ -291,37 +291,23 @@ const init = async () => {
 
 // Fun Commands
 client.on('message', message => {
-    if (message.content === 'كسمك') {
+	if (message.content === 'كسمك') {
        message.reply('كسمك انت');
        }
-});
-
-
-client.on('message', message => {
-    if (message.content === 'مين سالب السيرفر') {
+	if (message.content === 'مين سالب السيرفر') {
        message.reply('مجودي');
        }
-});
-
-client.on('message', message => {
-    if (message.content === 'مين كتبلك') {
+	if (message.content === 'مين كتبلك') {
        message.reply('صحبتي😳💓');
        }
-});
-
-client.on('message', message => {
-    if (message.content === 'طيب مين كتبلك') {
+	if (message.content === 'طيب مين كتبلك') {
        message.reply('صحبتي😳💓');
        }
-});
-
-
-client.on('message', message => {
-    if (message.content === 'مين عم السيرفر') {
+	if (message.content === 'مين عم السيرفر') {
        message.reply('العم تشاوس');
        }
-});
 
+});
 
 // If there isn't a reaction for every role, alert the user
 if (RCONFIG.roles.length !== RCONFIG.reactions.length)
