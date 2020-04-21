@@ -709,7 +709,8 @@ client.on("guildMemberAdd", member => {
 }); 
 
 //////////////////////////////////// Jail Command /////////////////////////////////////////////////
-// Returns the first voice channel named "jail"
+// Returns the first voice channel named "jail" 
+/*
 function getJailChannel(guild)
 {
     return guild.channels.find(channel => channel.type === "voice" && channel.name.toLowerCase() === "🔒 ❌Jail❌ 🔒");
@@ -767,7 +768,7 @@ client.on("message", async function(msg){
         output += "```\n";
 
         sendMessage(msg.channel, output);
-    } */
+    } 
 
     if(cmd === `${prefix}jail`)
     {
@@ -820,7 +821,7 @@ client.on("message", async function(msg){
 // Whenever anyone switches channels, perform a jail check
 client.on("voiceStateUpdate", function(o, n){
     jailCheck(n.guild, n);
-});
+}); */
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 client.login(process.env.TOKEN);
