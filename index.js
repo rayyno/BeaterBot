@@ -310,7 +310,7 @@ client.on('message', message => {
        message.reply('أبو مروه, مروان بن جرمان بن جهيمان (المتوفي سنة 69 هـ/688م) اصحبي محدث وفقيه في سيرفر البيتميترز وحافظ لجميع بيلدات التفت سنة 7 هـ، ولزم دامبا جوس وتعلم منه وحفظ الحديث عنه، حتى أصبح أكثر الاصحبة روايةً وحفظاً لاستراتيجات التفت. تعلم طب النفس في ولاية الكوفة في السنة الثامنه من الهجرة. شارك في معركة وغزوة الاجرامية. تولى امارة قناة هرمز. توفي في السنة 69 من الهجرة');
        }
 	if (message.content.startsWith(prefix + "jail")) {
-       message.reply('Sorry feature is not available at the moment');
+       message.reply('Sorry this feature is not available at the moment');
        }
 
 });
