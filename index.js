@@ -310,7 +310,7 @@ client.on('message', message => {
        message.reply('Sorry this feature is not available at the moment.');
        }
 	if (message.content === 'مين عم السيرفر') {
-    message.channel.send("العم كاووس", {files: ["https://cdn.discordapp.com/attachments/252464368891985920/714604910938685470/waaw.png"]});
+       message.reply('العم كاووس');
        }
 
 });
