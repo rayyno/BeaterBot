@@ -14,6 +14,7 @@ const db = require('quick.db');
 const cooldown = require("./cooldown.js");
 const utils = require("./utils.js");
 const client = new Discord.Client();
+const channel = new Discord.Channel(client);
 const active = new Map();
 const Enmap = require("enmap");
 const RCONFIG = require('./config_role');
@@ -290,33 +291,56 @@ const init = async () => {
 };
 
 // Fun Commands
-
-
+client.on('message', message => {
+  if (message.content === 'كسمك') {
+    message.reply('كسمك انت');
+  }
+  if (message.content === 'مين سالب السيرفر') {
+    message.reply('مجودي');
+  }
+  if (message.content === 'مين كتبلك') {
+    message.reply('صحبتي😳💓');
+  }
+  if (message.content === 'طيب مين كتبلك') {
+    message.reply('صحبتي😳💓');
+  }
+  if (message.content === 'مين ابو مروه') {
+    message.reply('أبو مروه, مروان بن جرمان بن جهيمان (المتوفي سنة 69 هـ/688م) اصحبي محدث وفقيه في سيرفر البيتميترز وحافظ لجميع بيلدات التفت سنة 7 هـ، ولزم دامبا جوس وتعلم منه وحفظ الحديث عنه، حتى أصبح أكثر الاصحبة روايةً وحفظاً لاستراتيجات التفت. تعلم طب النفس في ولاية الكوفة في السنة الثامنه من الهجرة. شارك في معركة وغزوة الاجرامية. تولى امارة قناة هرمز. توفي في السنة 69 من الهجرة');
+  }
+  /*if (message.content.startsWith(prefix + "jail")) {
+       message.reply('Sorry this feature is not available at the moment.');
+       }*/
+  if (message.content === 'مين عم السيرفر') {
+    message.reply('العم كاووس');
+  }
+  if (message.content === 'مين خنيث السيرفر') {
+    message.reply('نيقاتشو');
+  }
 });
 
 // If there isn't a reaction for every role, alert the user
 if (RCONFIG.roles.length !== RCONFIG.reactions.length)
-    throw "Roles list and reactions list are not the same length! Please double check this in the config.js file";
+  throw "Roles list and reactions list are not the same length! Please double check this in the config.js file";
 
 // Function to generate the role messages, based on your settings
 function generateMessages() {
-    return RCONFIG.roles.map((r, e) => {
-        return {
-            role: r,
-            message: `React below to get the **"${r}"** role!`, //DONT CHANGE THIS,
-            emoji: RCONFIG.reactions[e]
-        };
-    });
+  return RCONFIG.roles.map((r, e) => {
+    return {
+      role: r,
+      message: `React below to get the **"${r}"** role!`, //DONT CHANGE THIS,
+      emoji: RCONFIG.reactions[e]
+    };
+  });
 }
 
 // Function to generate the embed fields, based on your settings and if you set "const embed = true;"
 function generateEmbedFields() {
-    return RCONFIG.roles.map((r, e) => {
-        return {
-            emoji: RCONFIG.reactions[e],
-            role: r
-        };
-    });
+  return RCONFIG.roles.map((r, e) => {
+    return {
+      emoji: RCONFIG.reactions[e],
+      role: r
+    };
+  });
 }
 
 // Client events to let you know if the bot is online and to handle any Discord.js errors
@@ -325,9 +349,9 @@ client.on('error', console.error);
 
 // Handles the creation of the role reactions. Will either send the role messages separately or in an embed
 client.on("message", message => {
-  
-  if (message.content === '!roles'){
-        // Make sure bots can't run this command
+
+  if (message.content === '!roles') {
+    // Make sure bots can't run this command
     if (message.author.bot) return;
 
     // Make sure the command can only be ran in a server
@@ -339,73 +363,73 @@ client.on("message", message => {
     if ((message.author.id !== RCONFIG.yourID) && (message.content.toLowerCase() !== RCONFIG.setupCMD)) return;
 
     if (RCONFIG.deleteSetupCMD) {
-        const missing = message.channel.permissionsFor(message.guild.me).missing('MANAGE_MESSAGES');
-        // Here we check if the bot can actually delete messages in the channel the command is being ran in
-        if (missing.includes('MANAGE_MESSAGES'))
-            throw new Error("I need permission to delete your command message! Please assign the 'Manage Messages' permission to me in this channel!");
-        message.delete().catch(O_o=>{});
+      const missing = message.channel.permissionsFor(message.guild.me).missing('MANAGE_MESSAGES');
+      // Here we check if the bot can actually delete messages in the channel the command is being ran in
+      if (missing.includes('MANAGE_MESSAGES'))
+        throw new Error("I need permission to delete your command message! Please assign the 'Manage Messages' permission to me in this channel!");
+      message.delete().catch(O_o=>{});
     }
 
     const missing = message.channel.permissionsFor(message.guild.me).missing('MANAGE_MESSAGES');
     // Here we check if the bot can actually add recations in the channel the command is being ran in
     if (missing.includes('ADD_REACTIONS'))
-        throw new Error("I need permission to add reactions to these messages! Please assign the 'Add Reactions' permission to me in this channel!");
+      throw new Error("I need permission to add reactions to these messages! Please assign the 'Add Reactions' permission to me in this channel!");
 
     if (!RCONFIG.embed) {
-        if (!RCONFIG.initialMessage || (RCONFIG.initialMessage === '')) 
-            throw "The 'initialMessage' property is not set in the config.js file. Please do this!";
+      if (!RCONFIG.initialMessage || (RCONFIG.initialMessage === '')) 
+        throw "The 'initialMessage' property is not set in the config.js file. Please do this!";
 
-        message.channel.send(RCONFIG.initialMessage);
+      message.channel.send(RCONFIG.initialMessage);
 
-        const messages = generateMessages();
-        for (const { role, message: msg, emoji } of messages) {
-            if (!message.guild.roles.find(r => r.name === role))
-                throw `The role '${role}' does not exist!`;
+      const messages = generateMessages();
+      for (const { role, message: msg, emoji } of messages) {
+        if (!message.guild.roles.find(r => r.name === role))
+          throw `The role '${role}' does not exist!`;
 
-            message.channel.send(msg).then(async m => {
-                const customCheck = message.guild.emojis.find(e => e.name === emoji);
-                if (!customCheck) await m.react(emoji);
-                else await m.react(customCheck.id);
-            }).catch(console.error);
-        }
+        message.channel.send(msg).then(async m => {
+          const customCheck = message.guild.emojis.find(e => e.name === emoji);
+          if (!customCheck) await m.react(emoji);
+          else await m.react(customCheck.id);
+        }).catch(console.error);
+      }
     } else {
-        if (!RCONFIG.embedMessage || (RCONFIG.embedMessage === ''))
-            throw "The 'embedMessage' property is not set in the config.js file. Please do this!";
-        if (!RCONFIG.embedFooter || (RCONFIG.embedMessage === ''))
-            throw "The 'embedFooter' property is not set in the config.js file. Please do this!";
+      if (!RCONFIG.embedMessage || (RCONFIG.embedMessage === ''))
+        throw "The 'embedMessage' property is not set in the config.js file. Please do this!";
+      if (!RCONFIG.embedFooter || (RCONFIG.embedMessage === ''))
+        throw "The 'embedFooter' property is not set in the config.js file. Please do this!";
 
-        const roleEmbed = new RichEmbed()
-            .setDescription(RCONFIG.embedMessage)
-            .setFooter(RCONFIG.embedFooter);
+      const roleEmbed = new RichEmbed()
+        .setDescription(RCONFIG.embedMessage)
+        .setFooter(RCONFIG.embedFooter);
 
-        if (RCONFIG.embedColor) roleEmbed.setColor(RCONFIG.embedColor);
+      if (RCONFIG.embedColor) roleEmbed.setColor(RCONFIG.embedColor);
 
-        if (RCONFIG.embedThumbnail && (RCONFIG.embedThumbnailLink !== '')) 
-            roleEmbed.setThumbnail(RCONFIG.embedThumbnailLink);
-        else if (RCONFIG.embedThumbnail && message.guild.icon)
-            roleEmbed.setThumbnail(message.guild.iconURL);
+      if (RCONFIG.embedThumbnail && (RCONFIG.embedThumbnailLink !== '')) 
+        roleEmbed.setThumbnail(RCONFIG.embedThumbnailLink);
+      else if (RCONFIG.embedThumbnail && message.guild.icon)
+        roleEmbed.setThumbnail(message.guild.iconURL);
 
-        const fields = generateEmbedFields();
-        if (fields.length > 25) throw "That maximum roles that can be set for an embed is 25!";
+      const fields = generateEmbedFields();
+      if (fields.length > 25) throw "That maximum roles that can be set for an embed is 25!";
 
-        for (const { emoji, role } of fields) {
-            if (!message.guild.roles.find(r => r.name === role))
-                throw `The role '${role}' does not exist!`;
+      for (const { emoji, role } of fields) {
+        if (!message.guild.roles.find(r => r.name === role))
+          throw `The role '${role}' does not exist!`;
 
-            const customEmote = client.emojis.find(e => e.name === emoji);
+        const customEmote = client.emojis.find(e => e.name === emoji);
             
-            if (!customEmote) roleEmbed.addField(emoji, role, true);
-            else roleEmbed.addField(customEmote, role, true);
-        }
+        if (!customEmote) roleEmbed.addField(emoji, role, true);
+        else roleEmbed.addField(customEmote, role, true);
+      }
 
-        message.channel.send(roleEmbed).then(async m => {
-          for (const r of RCONFIG.reactions) {
-            const emoji = r;
-            const customCheck = client.emojis.find(e => e.name === emoji);
-            if (!customCheck) await m.react(emoji);
-            else await m.react(customCheck.id);
-          }
-        });
+      message.channel.send(roleEmbed).then(async m => {
+        for (const r of RCONFIG.reactions) {
+          const emoji = r;
+          const customCheck = client.emojis.find(e => e.name === emoji);
+          if (!customCheck) await m.react(emoji);
+          else await m.react(customCheck.id);
+        }
+      });
 
     }
   };
@@ -414,44 +438,44 @@ client.on("message", message => {
 
 // This makes the events used a bit more readable
 const events = {
-	MESSAGE_REACTION_ADD: 'messageReactionAdd',
-	MESSAGE_REACTION_REMOVE: 'messageReactionRemove',
+  MESSAGE_REACTION_ADD: 'messageReactionAdd',
+  MESSAGE_REACTION_REMOVE: 'messageReactionRemove',
 };
 
 // This event handles adding/removing users from the role(s) they chose based on message reactions
 client.on('raw', async event => {
-    if (!events.hasOwnProperty(event.t)) return;
+  if (!events.hasOwnProperty(event.t)) return;
+  
+  const { d: data } = event;
+  const user = client.users.get(data.user_id);
+  const channel = client.channels.get(data.channel_id);
 
-    const { d: data } = event;
-    const user = client.users.get(data.user_id);
-    const channel = client.channels.get(data.channel_id);
+  const message = await channel.fetchMessage(data.message_id);
+  const member = message.guild.members.get(user.id);
 
-    const message = await channel.fetchMessage(data.message_id);
-    const member = message.guild.members.get(user.id);
+  const emojiKey = (data.emoji.id) ? `${data.emoji.name}:${data.emoji.id}` : data.emoji.name;
+  let reaction = message.reactions.get(emojiKey);
 
-    const emojiKey = (data.emoji.id) ? `${data.emoji.name}:${data.emoji.id}` : data.emoji.name;
-    let reaction = message.reactions.get(emojiKey);
+  if (!reaction) {
+    // Create an object that can be passed through the event like normal
+    const emoji = new Emoji(client.guilds.get(data.guild_id), data.emoji);
+    reaction = new MessageReaction(message, emoji, 1, data.user_id === client.user.id);
+  }
 
-    if (!reaction) {
-        // Create an object that can be passed through the event like normal
-        const emoji = new Emoji(client.guilds.get(data.guild_id), data.emoji);
-        reaction = new MessageReaction(message, emoji, 1, data.user_id === client.user.id);
-    }
+  let embedFooterText;
+  if (message.embeds[0]) embedFooterText = message.embeds[0].footer.text;
 
-    let embedFooterText;
-    if (message.embeds[0]) embedFooterText = message.embeds[0].footer.text;
-
-    if (
-        (message.author.id === client.user.id) && (message.content !== RCONFIG.initialMessage || 
+  if (
+    (message.author.id === client.user.id) && (message.content !== RCONFIG.initialMessage || 
         (message.embeds[0] && (embedFooterText !== RCONFIG.embedFooter)))
-    ) {
+  ) {
 
-        if (!RCONFIG.embed && (message.embeds.length < 1)) {
-            const re = `\\*\\*"(.+)?(?="\\*\\*)`;
-            const role = message.content.match(re)[1];
+    if (!RCONFIG.embed && (message.embeds.length < 1)) {
+      const re = `\\*\\*"(.+)?(?="\\*\\*)`;
+      const role = message.content.match(re)[1];
 
-            if (member.id !== client.user.id) {
-                const guildRole = message.guild.roles.find(r => r.name === role);
+      if (member.id !== client.user.id) {
+        const guildRole = message.guild.roles.find(r => r.name === role);
                 if (event.t === "MESSAGE_REACTION_ADD") member.addRole(guildRole.id);
                 else if (event.t === "MESSAGE_REACTION_REMOVE") member.removeRole(guildRole.id);
             }
@@ -681,65 +705,194 @@ client.on("guildMemberAdd", member => {
  
     const gamer = invites[member.guild.id]; 
     invites[member.guild.id] = guildInvites; 
-   const invite = guildInvites.find(i => gamer.get(i.code).uses < i.uses);
+    const invite = guildInvites.find(i => gamer.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id); 
     const welcome = member.guild.channels.find(
     
       channel => channel.name === "𝑩𝑬𝑨𝑻𝑴𝑬𝑨𝑻𝑬𝑹𝑺"      
     ); 
     welcome.send(
-`{<@${member.id}>} **invited by** {<@${inviter.id}>}`
+      `{<@${member.id}>} **invited by** {<@${inviter.id}>}`
     ); 
   }); 
 }); 
 
-//////////////////////////////////// Jail Command /////////////////////////////////////////////////
+//////////////////////////////////// Alarm function //////////////////////////////////////////////
+
+// Replace all function
+String.prototype.replaceAll = function(search, replacement) {
+  var target = this;
+  return target.replace(new RegExp(search, 'g'), replacement);
+};
+
+
+client.on('message', msg => {
+
+
+  // Reminds the User
+  if (msg.content.toLowerCase().startsWith('!remindme')) {
+    var message = msg;
+    try {
+			
+      // Variables
+      var returntime;
+      var timemeasure;
+      msg = msg.content.split(' ');
+      console.log('Message recieved from ' + message.author.id + ' at ' + Date.now().toString());
+
+      // Sets the return time
+      timemeasure = msg[1].substring((msg[1].length - 1), (msg[1].length))
+      returntime = msg[1].substring(0, (msg[1].length - 1))
+
+      // Based off the delimiter, sets the time
+      switch (timemeasure) {
+        case 's':
+          returntime = returntime * 1000;
+          break;
+
+        case 'm':
+          returntime = returntime * 1000 * 60;
+          break;
+
+        case 'h':
+          returntime = returntime * 1000 * 60 * 60;
+          break;
+
+        case 'd':
+          returntime = returntime * 1000 * 60 * 60 * 24;
+          break;
+
+        default:
+          returntime = returntime * 1000;
+          break;
+      }
+
+      // Returns the Message
+      client.setTimeout(function() {
+        // Removes the first 2 array items
+        msg.shift();
+        msg.shift();
+
+        // Creates the message
+        var content = msg.join();
+        content = content.replaceAll(',', ' ');
+        message.reply(content);
+        console.log('Message sent to ' + message.author.id + ' at ' + Date.now().toString());
+      }, returntime)
+    } catch (e) {
+      message.reply("An error has occured, please make sure the command has a time delimiter and message");
+      console.error(e.toString());
+    }
+  }
+  // Reminds a specific user
+  else if (msg.content.toLowerCase().startsWith('!remind')) {
+    var message = msg;
+    try {
+			
+      // Variables
+      var returntime;
+      var timemeasure;
+      var userid;
+      msg = msg.content.split(' ');
+      console.log('Message recieved from ' + message.author.id + ' at ' + Date.now().toString());
+
+      // Sets the userid for the recipiant
+      userid = client.users.get(msg[1].replace('<@!', '').slice(0, -1))
+			
+      // Sets the return time
+      timemeasure = msg[2].substring((msg[2].length - 1), (msg[2].length))
+      returntime = msg[2].substring(0, (msg[2].length - 1))
+
+      // Based off the delimiter, sets the time
+      switch (timemeasure) {
+        case 's':
+          returntime = returntime * 1000;
+          break;
+
+        case 'm':
+          returntime = returntime * 1000 * 60;
+          break;
+
+        case 'h':
+          returntime = returntime * 1000 * 60 * 60;
+          break;
+
+        case 'd':
+          returntime = returntime * 1000 * 60 * 60 * 24;
+          break;
+        default:
+          returntime = returntime * 1000;
+          break;
+      }
+
+      // Returns the Message
+      client.setTimeout(function() {
+        // Removes the first 2 array items
+        msg.shift();
+        msg.shift();
+        msg.shift();
+
+        // Creates the message
+        var content = msg.join();
+        content = content.replaceAll(',', ' ');
+        message.channel.send(userid + content);
+        console.log('Message sent to ' + userid + ' at ' + Date.now().toString());
+      }, returntime)
+    } catch (e) {
+      message.reply("An error has occured, please make sure the command has a time delimiter and message");
+      console.error(e.toString());
+    }
+  } 
+});
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////// Jail Command /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Returns the first voice channel named "jail" 
-/*
+
 function getJailChannel(guild)
 {
-    return guild.channels.find(channel => channel.type === "voice" && channel.name.toLowerCase() === "🔒 ❌Jail❌ 🔒");
+  return guild.channels.find(channel => channel.type === "voice" && channel.name.toLowerCase() === "Jaill");
 }
 
 // Checks if anybody should be moved to the jail
 function jailCheck(guild, member)
 {
-    if(!member.roles.find(e => e.name.toLowerCase() === "🍆 𝑩𝑬𝘼𝙏 𝑴𝑬𝘼𝙏𝑬𝑹𝙎")) return;
+  if (!member.roles.find(e => e.name.toLowerCase() === "jailedd")) return;
     
-    if(typeof member.voiceChannel !== "undefined" && member.voiceChannel.name !== getJailChannel(guild).name)
-    {
-        member.setVoiceChannel(getJailChannel(guild))
-            .catch(err => {
-                console.log("Failed to move member: " + err);
-            });
-    }
+  if (typeof member.voiceChannel !== "undefined" && member.voiceChannel.name !== getJailChannel(guild).name)
+  {
+    member.setVoiceChannel(getJailChannel(guild))
+      .catch(err => {
+        console.log("Failed to move member: " + err);
+      });
+  }
 }
-
+/*
 // Quit process on warnings
-process.on("warning", function(warn){
-    process.exit(1);
+process.on("warning", function(warn) {
+  process.exit(1);
 });
 
 // On client ready
-client.on("ready", function(){
-    console.log("Bot online!");
+client.on("ready", function() {
+  console.log("Bot online!");
 })
-
-/* Message event listener
-client.on("message", async function(msg){
-
-    // Ignore the message if it wasn't in a server text channel,
-    // sent by a bot, or doesn't start with the prefix
-    if(msg.channel.type !== "text") return;
-    if(msg.author.bot) return;
-    if(!msg.content.startsWith(cfg.prefix)) return;
-
-    // Removes the prefix and leading/trailing whitespace and puts the command message into a string[]
-    const args = msg.content.slice(cfg.prefix.length).trim().split(/ +/g);
-    // Removes the first word of the arguments and puts it into a separate string
-    const cmd = args.shift().toLowerCase();
 */
-    /* HELP COMMAND
+// Message event listener
+client.on("message", async function(message) {
+
+  // Ignore the message if it wasn't in a server text channel,
+  // sent by a bot, or doesn't start with the prefix
+  if (message.channel.type !== "text") return;
+  if (message.author.bot) return;
+  ///////////////  if (!msg.content.startsWith(cfg.prefix)) return;
+
+  // Removes the prefix and leading/trailing whitespace and puts the command message into a string[]
+  ////////  const args = msg.content.slice(cfg.prefix.length).trim().split(/ +/g);
+  // Removes the first word of the arguments and puts it into a separate strin
+  ///////////  const cmd = args.shift().toLowerCase();
+  //
+  /* HELP COMMAND
     if(cmd === "help")
     {
         var output = "";
@@ -754,58 +907,111 @@ client.on("message", async function(msg){
 
         sendMessage(msg.channel, output);
     } 
-
-    if(cmd === `${prefix}jail`)
+*/
+  //if (cmd === `${prefix}jail`)
+  if (message.content.startsWith(prefix + "jail")) {
+  // First, verify if a valid user was mentioned
+    var member = message.mentions.members.first();
+    if (typeof member === "undefined")
     {
-        // First, verify if a valid user was mentioned
-        var member = msg.mentions.members.first();
-        if(typeof member === "undefined")
-        {
-            sendMessage(msg.channel, "You must mention a valid user!");
-            return;
-        }
-
-        // Verify that the guild does have a role named "jailed"
-        var jailedRole = msg.guild.roles.find(role => role.name.toLowerCase() === "🔒 Jail");
-        if(jailedRole === null)
-        {
-            sendMessage(msg.channel, "This guild does not have a \"Prisonnier\" role!");
-            return;
-        }
-
-        // Verify if bot has the permissions to punish this user accordingly
-        if(!member.manageable)
-        {
-            sendMessage(msg.channel, "I don't have the permissions necessary to punish this member!");
-            return;
-        }
-
-        // Remove all their roles
-        member.roles.forEach(role => {
-            member.removeRole(role.id)
-                .catch(err => {
-                    console.log("Failed to remove role: " + err);
-                });
-        });
-
-        // Give them the jailed role
-        member.addRole(jailedRole.id)
-            .catch(err => {
-                console.log("Failed to add role: " + err);
-            });
-
-
-        // Send the response message
-        sendMessage(msg.channel, "Jailed " + member.displayName + "!");
-
-        // Immediately do a check to see if the member should be moved to the jail
-        jailCheck(msg.guild);
+      message.channel.send('You must mention a valid user!');
+      //////////////////////////////////////////////////sendMessage(message.channel, "You must mention a valid user!");
+      return;
     }
+
+    // Verify that the guild does have a role named "jailed"
+    var jailedRole = message.guild.roles.find(role => role.name.toLowerCase() === "jailedd");
+    var normieRole = message.guild.roles.find(role => role.name.toLowerCase() === "Normie");
+    if (jailedRole === null)
+    {
+      message.channel.send('This guild does not have a \"Prisonnier\" role!');
+      ///////////////////////////sendMessage(message.channel, "This guild does not have a \"Prisonnier\" role!");
+      return;
+    }
+
+    // Verify if bot has the permissions to punish this user accordingly
+    if (!member.manageable)
+    {
+      message.channel.send('I do not have the permissions necessaryy to punish this member!');
+      //////////////////////////////sendMessage(message.channel, "I don't have the permissions necessary to punish this member!");
+      return;
+    }
+
+    // Remove all their roles
+    member.roles.forEach(role => {
+      member.removeRole(role.id)
+        .catch(err => {
+          console.log("Failed to remove role: " + err);
+        });
+    });
+
+    // Give them the jailed role
+    member.addRole(jailedRole.id)
+      .catch(err => {
+        console.log("Failed to add role: " + err);
+      });
+
+
+    // Send the response message
+    message.channel.send("Jailed " + member.displayName + "!");
+    /////////////////////sendMessage(message.channel, "Jailed " + member.displayName + "!");
+
+    // Immediately do a check to see if the member should be moved to the jail
+    jailCheck(message.channel, member);
+    
+  };
+  
+  if (message.content.startsWith(prefix + "free")) {
+  // First, verify if a valid user was mentioned
+    var member = message.mentions.members.first();
+    if (typeof member === "undefined")
+    {
+      message.channel.send('You must mention a valid user!');
+      //////////////////////////////////////////////////sendMessage(message.channel, "You must mention a valid user!");
+      return;
+    }
+
+    // Verify that the guild does have a role named "jailed"
+    var normieRole = message.guild.roles.find(role => role.name.toLowerCase() === "Normie");
+
+    // Verify if bot has the permissions to punish this user accordingly
+    if (!member.manageable)
+    {
+      message.channel.send('I do not have the permissions necessaryy to punish this member!');
+      //////////////////////////////sendMessage(message.channel, "I don't have the permissions necessary to punish this member!");
+      return;
+    }
+
+    // Remove all their roles
+    member.roles.forEach(role => {
+      member.removeRole(role.id)
+        .catch(err => {
+          console.log("Failed to remove role: " + err);
+        });
+    });
+
+    // Give them the jailed role
+    member.addRole(normieRole.id)
+      .catch(err => {
+        console.log("Failed to add role: " + err);
+      });
+
+
+    // Send the response message
+    message.channel.send(member.displayName + "just got out of jail" + "!");
+    /////////////////////sendMessage(message.channel, "Jailed " + member.displayName + "!");
+
+    // Immediately do a check to see if the member should be moved to the jail
+    jailCheck(message.channel, member);
+    
+  };
+  
+  
 });
 
-// Whenever anyone switches channels, perform a jail check
-client.on("voiceStateUpdate", function(o, n){
-    jailCheck(n.guild, n);
+/* Whenever anyone switches channels, perform a jail check
+client.on("voiceStateUpdate", function(o, n) {
+  jailCheck(n.guild, n);
 }); */
 ////////////////////////////////////////////////////////////////////////////////////////////
 
