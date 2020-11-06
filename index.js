@@ -59,7 +59,7 @@ client.on('ready', () => {
     game: {
       name: 'BEATMEATERS MAIN BOT',
       type: "STREAMING",
-      url: "https://www.twitch.tv/reyyun"
+      url: ""
     }
   });
 	const channel = client.channels.get("695000053068333166");
@@ -138,7 +138,7 @@ client.on('guildMemberAdd', async member => {
 
   const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.png');
 
-  channel.send(`${member}, 𝙒𝙚𝙡𝙘𝙤𝙢𝙚 𝙩𝙤 𝘽𝙀𝘼𝙏𝙈𝙀𝘼𝙏𝙀𝙍𝙎! 𝙔𝙤𝙪𝙧 𝙛𝙖𝙥𝙥𝙞𝙣𝙜 𝙢𝙖𝙩𝙚𝙧𝙞𝙖𝙡 𝙬𝙞𝙡𝙡 𝙗𝙚 𝙙𝙚𝙡𝙞𝙫𝙚𝙧𝙚𝙙 𝙨𝙝𝙤𝙧𝙩𝙡𝙮. 𝙀𝙣𝙟𝙤𝙮 ;𝘿`, attachment);
+  channel.send(`${member}, 𝙒𝙚𝙡𝙘𝙤𝙢𝙚 𝙩𝙤 𝘽𝙀𝘼𝙏𝙈𝙀𝘼𝙏𝙀𝙍𝙎! 𝙔𝙤𝙪𝙧 𝙢𝙖𝙩𝙚𝙧𝙞𝙖𝙡 𝙬𝙞𝙡𝙡 𝙗𝙚 𝙙𝙚𝙡𝙞𝙫𝙚𝙧𝙚𝙙 𝙨𝙝𝙤𝙧𝙩𝙡𝙮. 𝙀𝙣𝙟𝙤𝙮 ;𝘿`, attachment);
 });
 
 client.on('message', async message => {
